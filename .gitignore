@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+*.log
+package-lock.json
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+tmp/
+.cache/
+coverage/

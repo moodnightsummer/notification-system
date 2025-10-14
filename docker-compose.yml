@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  mysql:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: notification
+    ports:
+      - "3306:3306"
+
+  api:
+    build: ./backend-api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+      - mysql
