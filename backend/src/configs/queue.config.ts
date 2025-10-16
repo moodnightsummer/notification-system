@@ -7,6 +7,6 @@ export const queueFactory = (
   redis: {
     host: configService.get<string>('REDIS_HOST', { infer: true }),
     port: configService.get<number>('REDIS_PORT', { infer: true }),
-    db: configService.get<number>('REDIS_DB', { infer: true }),
+    db: configService.get<number>('REDIS_NOTI_DB', { infer: true }),
   },
 });

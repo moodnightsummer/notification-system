@@ -2,10 +2,20 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NotificationModule } from './notification/notification.module';
-import { ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { BullModule } from '@nestjs/bull';
+import { queueFactory } from './configs/queue.config';
 
 @Module({
-  imports: [NotificationModule],
+  imports: [
+    NotificationModule,
+    ConfigModule.forRoot({ isGlobal: true }),
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: queueFactory,
+      inject: [ConfigService],
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService, ConfigService],
 })
