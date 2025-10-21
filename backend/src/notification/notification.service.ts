@@ -12,8 +12,16 @@ export class NotificationService {
   ) {}
 
   async createNotification(dto: CreateNotificationDto): Promise<string> {
-    await this.notificationRepository.createNotification({
+    const message = await this.notificationRepository.createNotification({
       ...dto,
+    });
+
+    await this.notificationQueue.add('sendNotification', message, {
+      delay: dto.scheduledAt
+        ? new Date(dto.scheduledAt).getTime() - Date.now()
+        : 0,
+      removeOnComplete: true,
+      attempts: 3,
     });
 
     return '알림이 정상적으로 생성되었습니다.';
