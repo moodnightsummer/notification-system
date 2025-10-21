@@ -23,7 +23,4 @@ export class CreateNotificationDto {
 
   // 예약 발송 시간 (비동기 지연 처리 시 사용)
   scheduledAt?: Date;
-
-  // 생성 시간
-  createdAt: Date;
 }
