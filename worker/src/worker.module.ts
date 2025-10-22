@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bull';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { queueFactory } from '../../backend/src/configs/queue.config';
 import { NotificationProcessor } from './processors/notification.processor';
+import { queueFactory } from './configs/queue.config';
 
 @Module({
   imports: [
