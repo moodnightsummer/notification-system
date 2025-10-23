@@ -14,11 +14,21 @@ services:
       MYSQL_DATABASE: notification
     ports:
       - "3306:3306"
-
   api:
-    build: ./backend-api
+    build: ./backend
+    volumes:
+      - ./backend-api:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
       - "3000:3000"
+    depends_on:
+      - redis
+      - mysql
+  worker:
+    build: ./worker
+    volumes:
+      - ./worker:/usr/src/app
+      - /usr/src/app/node_modules
     depends_on:
       - redis
       - mysql
