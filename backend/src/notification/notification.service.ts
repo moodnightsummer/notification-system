@@ -12,11 +12,13 @@ export class NotificationService {
   ) {}
 
   async createNotification(dto: CreateNotificationDto): Promise<string> {
-    const message = await this.notificationRepository.createNotification({
+    await this.notificationRepository.createNotification({
       ...dto,
     });
 
-    await this.notificationQueue.add('sendNotification', message, {
+    const jobData = { ...dto };
+
+    await this.notificationQueue.add('sendNotification', jobData, {
       delay: dto.scheduledAt
         ? new Date(dto.scheduledAt).getTime() - Date.now()
         : 0,
