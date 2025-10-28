@@ -7,10 +7,12 @@ import { BullModule } from '@nestjs/bull';
 import { queueFactory } from './configs/queue.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './configs/typeorm.config';
+import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
     NotificationModule,
+    CartModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
