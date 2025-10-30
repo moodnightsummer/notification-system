@@ -13,7 +13,7 @@ export class CreateNotificationDto {
 
   // 이동 경로
   target?: {
-    type: 'POST' | 'COMMENT' | 'USER' | 'URL';
+    type: 'POST' | 'COMMENT' | 'USER' | 'URL' | 'Bag';
     id?: number;
     url?: string;
   };

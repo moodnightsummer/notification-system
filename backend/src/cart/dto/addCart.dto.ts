@@ -11,4 +11,7 @@ export class addCartDto {
 
   @IsString()
   productName: string;
+
+  @IsInt()
+  notificationFlag: number;
 }
